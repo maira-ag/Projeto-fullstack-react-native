@@ -23,8 +23,15 @@ const Álbuns = [
   { id: 12, title: "brat", imageUrl: "https://i.scdn.co/image/ab67616d0000b27388e3822cccfb8f2832c70c2e" },
 ];
 
+const Músicas = [
+  { id: 13, title: "HOWLING", imageUrl: "https://i.scdn.co/image/ab67616d00001e02f3e7b35d19758748f642299f" },
+  { id: 14, title: "fue mejor (feat. SZA)", imageUrl: "https://i.scdn.co/image/ab67616d0000b273e08b58aa5d1e7ba01bc45c53" },
+  { id: 15, title: "Ex-Factor", imageUrl: "https://i.scdn.co/image/ab67616d0000b273e08b1250db5f75643f1508c9" },
+  { id: 16, title: "Hit Me Where It Hurts", imageUrl: "https://i.scdn.co/image/ab67616d0000b2737d983e7bf67c2806218c2759" },
+];
+
 const TelaHome = () => {
-  const renderPlaylist = (data) => (
+  const renderPlaylist = (data, isArtist = false) => (
     <FlatList
       data={data}
       horizontal
@@ -32,7 +39,7 @@ const TelaHome = () => {
       renderItem={({ item }) => (
         <Pressable style={styles.itemCard}>
           <Image
-            style={styles.itemImage}
+            style={[styles.itemImage, isArtist && styles.artistImage]}
             source={{ uri: item.imageUrl }}
             resizeMode="contain"
           />
@@ -53,14 +60,17 @@ const TelaHome = () => {
         </Link>
       </View>
 
-      <Text style={styles.sectionTitle}>Playlists</Text>
-      {renderPlaylist(playlists)}
+      <Text style={styles.sectionTitle}>Músicas</Text>
+      {renderPlaylist(Músicas)}
 
       <Text style={styles.sectionTitle}>Artistas</Text>
-      {renderPlaylist(Artistas)}
+      {renderPlaylist(Artistas, true)}
 
       <Text style={styles.sectionTitle}>Álbuns</Text>
       {renderPlaylist(Álbuns)}
+
+      <Text style={styles.sectionTitle}>Playlists</Text>
+      {renderPlaylist(playlists)}
     </ScrollView>
   );
 };
@@ -77,6 +87,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 20,
+    marginTop: -30,
   },
   title: {
     fontSize: 32,
@@ -112,6 +123,9 @@ const styles = StyleSheet.create({
     height: undefined,
     aspectRatio: 1,
     borderRadius: 5,
+  },
+  artistImage: {
+    borderRadius: 60,
   },
   itemText: {
     color: "#fff",

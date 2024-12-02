@@ -4,10 +4,8 @@ import { AppContext } from "../../scripts/AppContext";
 import * as ImagePicker from 'expo-image-picker';    //npm install expo-image-picker
 import { router } from "expo-router";
 
-
-
 export default TelaPerfil = () => {
-    const { user, setUser } = useContext(AppContext)
+    const { user, setUser } = useContext(AppContext);
     const [image, setImage] = useState('');
 
     const pickImage = async () => {
@@ -63,23 +61,34 @@ export default TelaPerfil = () => {
             console.log(e);
         }
     };
-    
-
 
     return (
         <View style={styles.container}>
-            <View style={styles.perfil}>
-              <Pressable onPress={pickImage} style={styles.imagemBotao}>
-                <Image source={{ uri: user.profile_image }} style={{ height: 100, width: 100, borderRadius: 50 }} />
+            <Pressable onPress={() => router.replace("/Home")} style={styles.backButton}>
+                <Text style={styles.backText}>voltar</Text>
             </Pressable>
-            <View style={styles.user_info}>
-                <Text style={styles.user_nome} >{user.nome} {user.sobrenome}</Text>
-                <Text style={styles.user_email}>{user.email}</Text>
-                <Text style={styles.data_nasc}>{user.dataNascimento}</Text>
+
+            <View style={styles.perfil}>
+                <Pressable onPress={pickImage} style={styles.imagemBotao}>
+                    <Image source={{ uri: user.profile_image }} style={{ height: 100, width: 100, borderRadius: 50 }} />
+                </Pressable>
+                <View style={styles.user_info}>
+                    <Text style={styles.user_nome}>{user.nome} {user.sobrenome}</Text>
+                    <Text style={styles.user_email}>{user.email}</Text>
+                    <Text style={styles.data_nasc}>{user.dataNascimento}</Text>
+                    {user.bio && <Text style={styles.user_bio}>{user.bio}</Text>}
+                </View>
+
+                <Pressable style={styles.button} onPress={() => {router.replace("/adBio")}}>
+                    <Text style={{ color: '#ffffff' }}>
+                        {user.bio ? "Editar Bio" : "Adicionar Bio"}
+                    </Text>
+                </Pressable>
+
+                <Pressable style={styles.button} onPress={() => {router.replace("/telaAlterarSenha")}}>
+                    <Text style={{ color: '#ffffff' }}>Alterar Senha</Text>
+                </Pressable>  
             </View>
-            <Pressable style={styles.button} onPress={() => {router.replace("/telaAlterarSenha")}}><Text style={{ color: '#ffffff' }}>Alterar Senha</Text></Pressable>  
-            </View>
-            
         </View>
     )
 }
@@ -93,7 +102,18 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         backgroundColor: '#0b071b',
     },
-    button:{
+    backButton: {
+        position: "absolute",
+        top: 20,
+        left: 10,
+        backgroundColor: "#5732f1",
+        padding: 10,
+        borderRadius: 5,
+    },
+    backText: {
+        color: "#fff",
+    },
+    button: {
         backgroundColor: '#5732f1',
         width: 200,
         height: 40,
@@ -102,17 +122,19 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 5,
         marginTop: 30,
+        marginBottom: -10
     },
     perfil: {
         backgroundColor: '#100A2A',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        height: 300,
+        height: 360,
         width: 300,
         borderRadius: 10,
+        marginTop: 60,
     },
-    imagemBotao:{
+    imagemBotao: {
         backgroundColor: '#ffffff',
         borderRadius: 50,
         marginTop: 20
@@ -140,4 +162,11 @@ const styles = StyleSheet.create({
         width: 300,
         textAlign: 'center',
     },
-})
+    user_bio: {
+        color: '#ffffff',
+        width: 300,
+        textAlign: 'center',
+        marginTop: 10,
+        fontStyle: 'italic',
+    },    
+});
