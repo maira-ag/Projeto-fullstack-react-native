@@ -23,7 +23,7 @@ export default TelaLogin = () => {
                 })
             })
 
-            if (response.ok) { // Compare com === para evitar coerção de tipo
+            if (response.ok) {
                 alert("Senha alterada com sucesso");
                 router.replace("/telaPerfil");
             } else {

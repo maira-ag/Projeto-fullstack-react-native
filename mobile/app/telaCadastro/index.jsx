@@ -38,8 +38,8 @@ export default TelaCadastro = () => {
 
     return (
         <View style={styles.container}>
-            <Pressable onPress={() => router.back()} style={styles.botao_voltar}>
-                <Text style={styles.texto_voltar}>Voltar</Text>
+            <Pressable onPress={() => router.back()} style={styles.backButton}>
+                <Text style={styles.textBack}>Voltar</Text>
             </Pressable>
 
             <Text style={styles.title}>Crie sua conta</Text>
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: "#5732f1"
     },
-    botao_voltar: {
+    backButton: {
         position: "absolute",
         top: 20,
         left: 10,
@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
         padding: 10,
         borderRadius: 5,
     },
-    texto_voltar: {
+    textBack: {
         color: "#fff",
     },
     button: {

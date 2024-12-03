@@ -68,11 +68,11 @@ export default TelaPerfil = () => {
                 <Text style={styles.backText}>voltar</Text>
             </Pressable>
 
-            <View style={styles.perfil}>
-                <Pressable onPress={pickImage} style={styles.imagemBotao}>
+            <View style={styles.profile}>
+                <Pressable onPress={pickImage} style={styles.buttonImage}>
                     <Image source={{ uri: user.profile_image }} style={{ height: 100, width: 100, borderRadius: 50 }} />
                 </Pressable>
-                <View style={styles.user_info}>
+                <View style={styles.userInfo}>
                     <Text style={styles.user_nome}>{user.nome} {user.sobrenome}</Text>
                     <Text style={styles.user_email}>{user.email}</Text>
                     <Text style={styles.data_nasc}>{user.dataNascimento}</Text>
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
         marginBottom: -10
     },
-    perfil: {
+    profile: {
         backgroundColor: '#100A2A',
         display: 'flex',
         flexDirection: 'column',
@@ -134,12 +134,12 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         marginTop: 60,
     },
-    imagemBotao: {
+    buttonImage: {
         backgroundColor: '#ffffff',
         borderRadius: 50,
         marginTop: 20
     },
-    user_info: {
+    userInfo: {
         display: 'flex',
         justifyContent: 'center',
         flexDirection: 'column',

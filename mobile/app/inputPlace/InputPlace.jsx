@@ -34,7 +34,6 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         outlineWidth: 0
     },
-
     input: {
         display: 'flex',
         flexDirection: 'row',

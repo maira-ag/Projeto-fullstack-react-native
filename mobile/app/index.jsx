@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Text, TextInput, View, StyleSheet, Image, Pressable } from "react-native";
 import InputPlace from "./inputPlace/InputPlace";
 import { Link, router } from "expo-router";
-import { AppContext } from "../scripts/AppContext";
+import { AppContext } from "../../mobile/scripts/AppContext";
 
 export default TelaLogin = () => {
     const { user, setUser } = useContext(AppContext);
@@ -55,7 +55,7 @@ export default TelaLogin = () => {
             <View style={styles.form}>
                 <InputPlace value={email} onChangeTextHandler={setEmail} icon={"https://img.icons8.com/?size=100&id=PedPR10iVAnY&format=png&color=5732F1"} label={"Email"} />
                 <InputPlace value={password} onChangeTextHandler={setPassword} icon={"https://img.icons8.com/?size=100&id=XkaSssewbJSt&format=png&color=5732F1"} label={"Senha"} />
-                <Link href={"/telaCadastro"} style={styles.link}><Text style={styles.link_text}>Não possui uma conta? Cadastre-se</Text></Link>
+                <Link href={"/telaCadastro"} style={styles.link}><Text style={styles.linkText}>Não possui uma conta? Cadastre-se</Text></Link>
             </View>
             <Pressable style={styles.button} onPress={fetchData}><Text style={{ color: '#ffffff' }}>Login</Text></Pressable>
         </View>
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginTop: -10
     },
-    link_text: {
+    linkText: {
         fontSize: 15,
         marginTop: 100,
         color: '#FFFFFF'
