@@ -78,7 +78,7 @@ const TelaHome = () => {
     <ScrollView style={styles.container}>
       <View style={styles.header}>
         <Image source={require('../../assets/images/logo.png')} style={styles.logo} />
-        <Text style={styles.title}>Bem-vindo ao echo</Text>
+        <Text style={styles.title}>Bem-vindo ao echo!</Text>
         <Link to="/telaPerfil" style={styles.profileLink}>
           <Text style={styles.profileText}>Meu Perfil</Text>
           <Image source={require('../../assets/images/userIcon.png')} style={styles.profileImage} />
@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     fontWeight: "bold",
-    color: "#5732f1",
+    color: "#ffffff",
   },
   profileLink: {
     backgroundColor: "#5732f1",
@@ -167,9 +167,9 @@ const styles = StyleSheet.create({
     height: 70,
   },
   profileImage: {
-    width: 30,
-    height: 30
-  }
+    width: 27,
+    height: 27,
+  },
 });
 
 export default TelaHome;

@@ -1,12 +1,15 @@
 import {Sequelize, DataTypes} from 'sequelize' //npm i sequelize pg pg-hstore
 
+import dotenv from 'dotenv'
+dotenv.config()
+
 const sequelize = new Sequelize(
-    'echo', 
-    'postgres', 
-    'postgres', 
+    process.env.dbname, // nome do db -- 'echo'
+    process.env.dbusername, // usuario -- 'postgres'
+    process.env.dbpassword, // senha -- 'postgres'
     {
-        host: 'localhost',
-        port: 5432,
+        host: process.env.dbhost, // host -- 'localhost'
+        port: process.env.port,
         dialect: 'postgres'
     }
 )
@@ -52,7 +55,7 @@ const Playlist = sequelize.define('Playlist', {
       type: DataTypes.TEXT,
     },
     cover: {
-      type: DataTypes.STRING, // URL da capa
+      type: DataTypes.STRING,
     },
   });
   
@@ -62,7 +65,7 @@ const Playlist = sequelize.define('Playlist', {
       allowNull: false,
     },
     image: {
-      type: DataTypes.STRING, // URL da imagem do artista
+      type: DataTypes.STRING,
     },
   });
   
@@ -73,18 +76,18 @@ const Playlist = sequelize.define('Playlist', {
       allowNull: false,
     },
     duration: {
-      type: DataTypes.STRING, // Formato: "3:45"
+      type: DataTypes.STRING,
     },
     albumCover: {
-      type: DataTypes.STRING, // URL da capa do álbum
+      type: DataTypes.STRING,
     },
   });
   
-  // Relacionamentos
-  Playlist.hasMany(Song); // Uma playlist tem várias músicas
+ 
+  Playlist.hasMany(Song);
   Song.belongsTo(Playlist);
   
-  Artist.hasMany(Song); // Um artista pode ter várias músicas
+  Artist.hasMany(Song);
   Song.belongsTo(Artist);
 
 const criarTabelas = () => {
@@ -94,7 +97,7 @@ const criarTabelas = () => {
         .catch((err) => {
             console.log(err)
         })
-    sequelize.sync({ force: true }).then(() => { //sincroniza o banco de dados, mas para um banco real são necessárias formas de verificar as tabelas antes
+    sequelize.sync({ force: true }).then(() => {
         console.log('tabela criada')
     })
 }
